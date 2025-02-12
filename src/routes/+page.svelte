@@ -7,7 +7,7 @@
 
 	console.log(data);
 
-	let iamchrismode = localStorage.getItem('iamchris');
+	let iamchrismode;
 
 	let showIamChris = false;
 
@@ -34,9 +34,20 @@
 
 	function lockiamchris() {
 		if (data.isAuthorized) {
-			localStorage.setItem('iamchris', data.apiKey);
+			window.localStorage.setItem('iamchris', data.apiKey);
 		}
 		window.location.pathname = '/';
+	}
+
+	let resetChrisCount = 0;
+
+	function resetChris() {
+		resetChrisCount++;
+		if (resetChrisCount > 5) {
+			resetChrisCount = 0;
+			localStorage.removeItem('iamchris');
+			window.location.reload();
+		}
 	}
 
 	onMount(() => {
@@ -44,8 +55,11 @@
 		// 	autoUpdate();
 		// }, 1000);
 		// check iamchris api key
+		iamchrismode = localStorage.getItem('iamchris');
 		if (iamchrismode) {
-			window.location.href = '/?apiKey=' + iamchrismode;
+			if (!data.isAuthorized) {
+				window.location.href = '/?apiKey=' + iamchrismode;
+			}
 		} else {
 			showIamChris = true;
 		}
@@ -54,7 +68,7 @@
 	});
 </script>
 
-<img src="/chris.png" alt="chris" style="width: 150px;" />
+<img src="/chris.png" alt="chris" style="width: 150px;" on:click={() => resetChris()} />
 <h2>Is Chris free?</h2>
 <p style="font-size: 4rem;"><em>{isFree || '?'}</em></p>
 {#if data.isAuthorized}
