@@ -7,6 +7,10 @@
 
 	console.log(data);
 
+	let iamchrismode = localStorage.getItem('iamchris');
+
+	let showIamChris = false;
+
 	function autoUpdate() {
 		if (!document.hidden) {
 			console.log('fetching');
@@ -28,10 +32,23 @@
 			});
 	}
 
+	function lockiamchris() {
+		if (data.isAuthorized) {
+			localStorage.setItem('iamchris', data.apiKey);
+		}
+		window.location.pathname = '/';
+	}
+
 	onMount(() => {
 		// const interval = setInterval(() => {
 		// 	autoUpdate();
 		// }, 1000);
+		// check iamchris api key
+		if (iamchrismode) {
+			window.location.href = '/?apiKey=' + iamchrismode;
+		} else {
+			showIamChris = true;
+		}
 		autoUpdate();
 		return () => clearInterval(interval);
 	});
@@ -49,4 +66,7 @@
 		<button on:click={() => set_availability('go away')}>go away</button>
 	</p>
 	<p>changes may take a moment to propagate</p>
+	{#if showIamChris}
+		<button on:click={() => lockiamchris()}>lock iamchris mode</button>
+	{/if}
 {/if}
