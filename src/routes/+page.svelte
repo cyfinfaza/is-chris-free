@@ -84,7 +84,7 @@
 	<p>
 		<button on:click={() => set_availability('yes')}>free</button>
 		<button on:click={() => set_availability('no')}>not free</button>
-		<button on:click={() => set_availability('stfu')}>stfu</button>
+		<button on:click={() => set_availability('with cy')}>with cy</button>
 		<button on:click={() => set_availability('go away')}>go away</button>
 	</p>
 	<p>changes may take a moment to propagate</p>
