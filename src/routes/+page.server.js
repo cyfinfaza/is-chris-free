@@ -1,8 +1,5 @@
 export const config = {
-	runtime: 'edge',
-	isr: {
-		expiration: false // Disable static builds
-	}
+	runtime: 'edge'
 };
 
 export async function load({ fetch, url }) {
