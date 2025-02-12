@@ -29,6 +29,18 @@
 			* {
 				box-sizing: border-box;
 			}
+			:root {
+				--bg: #fff;
+				--fg: #333;
+				--text: #333;
+			}
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg: #000;
+					--fg: #444;
+					--text: #fff;
+				}
+			}
 			body {
 				font-family:
 					'Inter',
@@ -43,7 +55,8 @@
 				padding: 8px;
 				width: 100vw;
 				height: 100vh;
-				color: #333;
+				color: var(--text);
+				background-color: var(--bg);
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -53,10 +66,10 @@
 				font-family: inherit;
 				font-size: 1rem;
 				padding: 0.5rem 1rem;
-				border: 1px solid #333;
+				border: 1px solid var(--fg);
 				border-radius: 4px;
-				background-color: #fff;
-				color: #333;
+				background-color: var(--bg);
+				color: var(--text);
 				cursor: pointer;
 			}
 		</style>
