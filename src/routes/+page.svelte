@@ -11,6 +11,9 @@
 
 	let showIamChris = false;
 
+	let showTextBox = false;
+	let textInBox = '';
+
 	function autoUpdate() {
 		if (!document.hidden) {
 			console.log('fetching');
@@ -44,9 +47,14 @@
 	function resetChris() {
 		resetChrisCount++;
 		if (resetChrisCount > 5) {
-			resetChrisCount = 0;
-			localStorage.removeItem('iamchris');
-			window.location.reload();
+			if (data.isAuthorized) {
+				resetChrisCount = 0;
+				localStorage.removeItem('iamchris');
+				window.location.reload();
+			} else {
+				showTextBox = true;
+				console.log('showing text box');
+			}
 		}
 	}
 
@@ -83,4 +91,8 @@
 	{#if showIamChris}
 		<button on:click={() => lockiamchris()}>lock iamchris mode</button>
 	{/if}
+{/if}
+{#if showTextBox && !data.isAuthorized}
+	<input type="text" bind:value={textInBox} />
+	<a href={'/?apiKey=' + textInBox}>go</a>
 {/if}
