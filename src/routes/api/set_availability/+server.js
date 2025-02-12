@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { BUTTON_KEY } from '$env/static/private';
+import { BUTTON_KEY, KVDB_KEY } from '$env/static/private';
 
 export async function GET({ url }) {
 	const value = url.searchParams.get('value');
@@ -14,13 +14,16 @@ export async function GET({ url }) {
 	}
 
 	try {
-		const response = await fetch('https://kvdb.io/86HBE3P3QxhmN1pqDRwzpW/is-free', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'text/plain'
-			},
-			body: value
-		});
+		const response = await fetch(
+			'https://kvdb.io/86HBE3P3QxhmN1pqDRwzpW/is-free?access_token=' + KVDB_KEY,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'text/plain'
+				},
+				body: value
+			}
+		);
 
 		if (!response.ok) {
 			throw new Error('Failed to send data');

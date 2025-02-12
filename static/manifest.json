@@ -1,0 +1,9 @@
+{
+	"name": "timezonez",
+	"short_name": "timezonez",
+	"start_url": "/",
+	"display": "standalone",
+	"display_override": ["window-controls-overlay"],
+	"min_width": 500,
+	"min_height": 500
+}

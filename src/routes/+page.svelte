@@ -10,7 +10,7 @@
 	function autoUpdate() {
 		if (!document.hidden) {
 			console.log('fetching');
-			fetch('/api/get_availability')
+			fetch('https://kvdb.io/86HBE3P3QxhmN1pqDRwzpW/is-free', { cache: 'no-store' })
 				.then((response) => response.text())
 				.then((data) => {
 					isFree = data;
@@ -29,9 +29,10 @@
 	}
 
 	onMount(() => {
-		const interval = setInterval(() => {
-			autoUpdate();
-		}, 1000);
+		// const interval = setInterval(() => {
+		// 	autoUpdate();
+		// }, 1000);
+		autoUpdate();
 		return () => clearInterval(interval);
 	});
 </script>
