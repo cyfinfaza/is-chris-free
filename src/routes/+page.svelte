@@ -93,6 +93,6 @@
 	{/if}
 {/if}
 {#if showTextBox && !data.isAuthorized}
-	<input type="text" bind:value={textInBox} />
+	<input type="password" bind:value={textInBox} />
 	<a href={'/?apiKey=' + textInBox}>go</a>
 {/if}
