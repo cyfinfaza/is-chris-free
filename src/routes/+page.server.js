@@ -1,3 +1,10 @@
+export const config = {
+	runtime: 'edge',
+	isr: {
+		expiration: false // Disable static builds
+	}
+};
+
 export async function load({ fetch, url }) {
 	// Get API key from URL parameter
 	const apiKey = url.searchParams.get('apiKey');
