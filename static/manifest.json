@@ -1,6 +1,6 @@
 {
-	"name": "timezonez",
-	"short_name": "timezonez",
+	"name": "Is Chris Free?",
+	"short_name": "chris",
 	"start_url": "/",
 	"display": "standalone",
 	"display_override": ["window-controls-overlay"],
